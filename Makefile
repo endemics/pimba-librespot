@@ -1,5 +1,5 @@
 VERSION=$(shell git rev-parse --short HEAD)
-
+.PHONY: build run push
 all: build run
 
 build:
@@ -14,4 +14,4 @@ run:
 	  pimba/librespot:$(VERSION) -n pi --zeroconf-port 4070
 
 push:
-	docker push docker.io/pimba/librespot:$(VERSION)
+	docker push pimba/librespot:$(VERSION)
