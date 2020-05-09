@@ -5,7 +5,7 @@ RUN dpkg --add-architecture armhf && \
     apt-get install -y curl \
         git build-essential \
         libasound2-dev pkg-config \
-        crossbuild-essential-armhf libasound2-dev:armhf zlib1g-dev:armhf zlib1g-dev lib32z1
+        crossbuild-essential-armhf libasound2-dev:armhf zlib1g-dev:armhf zlib1g-dev
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 ENV PATH="/root/.cargo/bin/:${PATH}"
