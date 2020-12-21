@@ -27,4 +27,5 @@ RUN mkdir /librespot
 COPY --from=build /build/release/librespot /librespot/
 COPY librespot_avahi.service /librespot/librespot_avahi.service
 COPY start.sh /librespot/start.sh
+COPY mpc_stop.sh /librespot/mpc_stop.sh
 ENTRYPOINT ["/librespot/start.sh"]
