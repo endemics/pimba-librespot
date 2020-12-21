@@ -1,0 +1,13 @@
+name: build
+
+on:
+  push: [ master ]
+  schedule:
+    - cron: '* * * * 0'
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, ARM]
+    steps:
+      - uses: actions/checkout@v2
+      - run: make build
