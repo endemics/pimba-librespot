@@ -2,13 +2,31 @@ name: build
 
 on:
   push:
-    branches: [ master ]
+  pull_request:
   schedule:
     - cron: '* * * * 0'
 
 jobs:
-  build:
-    runs-on: [self-hosted, linux, ARM]
+  docker-armhf-build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: make build
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up QEMU
+        id: qemu
+        uses: docker/setup-qemu-action@v1
+        with:
+          image: tonistiigi/binfmt:latest
+          platforms: arm
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Build Docker image for armhf arch
+        run: |
+          VERSION=$(git rev-parse --short HEAD)
+          docker buildx build \
+            --platform linux/arm/v7 \
+            --file Dockerfile . \
+            --output "type=docker,name=docker.io/pimba/librespot:${VERSION}"
+      - name: List Docker images
+        run: docker images
