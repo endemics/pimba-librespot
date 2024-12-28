@@ -19,7 +19,7 @@ jobs:
           platforms: arm
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
       - name: Build Docker image for armhf arch
         run: |
           VERSION=$(git rev-parse --short HEAD)

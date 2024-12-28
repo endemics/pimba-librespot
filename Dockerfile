@@ -2,7 +2,7 @@ FROM debian:stretch AS build
 
 RUN apt-get update && \
     apt-get install -y curl \
-        git build-essential \
+        git build-essential cmake \
         libasound2-dev pkg-config \
         zlib1g-dev
 
