@@ -2,7 +2,8 @@ FROM debian:bookworm AS build
 
 RUN apt-get update && \
     apt-get install -y curl \
-        git build-essential cmake \
+        git build-essential \
+        cmake libclang-dev \
         libasound2-dev pkg-config \
         zlib1g-dev
 
